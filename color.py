@@ -1,0 +1,10 @@
+class Colors:
+	Red = "\033[31m"
+	Green = "\033[32m"
+	Grey = "\033[38;2;107;107;107m"
+	Yellow = "\033[33m"
+	Blue = "\033[34m"
+	Custom_blue = "\033[38;2;32;42;232m"
+	Bold = "\033[1m"
+	Underline = "\033[4m"
+	End = "\033[0m"
