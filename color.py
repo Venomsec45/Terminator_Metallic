@@ -9,6 +9,7 @@ class Colors:
 	Custom_yellow = "\033[38;2;239;242;15m"
 
 	Red = "\033[31m"
+	Custom_red = "\033[38;2;242;30;15m"
 
 	Grey = "\033[38;2;107;107;107m"
 	
