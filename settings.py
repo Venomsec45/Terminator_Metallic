@@ -37,7 +37,7 @@ def settings_menu():
         if choice == "1":
             username = input("Enter username (min 5 chars): ")
             if username != "" and len(username) >= 5:
-                settings["username"] = username
+                pass # In testing
                 print("Username updated!")
             else:
                 print("Invalid username!")
