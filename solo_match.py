@@ -1,13 +1,17 @@
 from player import Player
 from enemy import random_enemy
 
+
 # Solo Match Function
 def solo_match(player):
+
     enemy = random_enemy()
+
     print(f"\nFight started against {enemy.name}!")
 
     # Combat Loop
     while player.is_alive() and enemy.is_alive():
+
         print("\n--- STATUS ---")
         print(f"Your HP: {player.hp}/{player.max_hp}")
         print(f"{enemy.name} HP: {enemy.hp}")
@@ -28,7 +32,7 @@ def solo_match(player):
             continue
 
         # Enemy defeated check
-        if enemy.is_alive():
+        if not enemy.is_alive():
             break
 
         # Enemy turn
@@ -39,16 +43,20 @@ def solo_match(player):
 
     if player.hp <= 0:
         print("You lost the match!")
+
     else:
         print("You won the match!")
         player.gain_rewards(enemy.xp_reward, enemy.coin_reward)
 
     # Reset HP
     player.reset_hp()
+
     print("HP restored.\n")
 
 
 # Test
 if __name__ == "__main__":
-    player = Player()
+
+    player = Player("Player1")
+
     solo_match(player)
