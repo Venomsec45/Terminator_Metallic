@@ -11,6 +11,9 @@ class Colors:
 	Red = "\033[31m"
 	Custom_red = "\033[38;2;242;30;15m"
 
+	Cyan = "\033[36m"
+	Custom_cyan = "\033[38;2;0;255;255m"
+
 	Grey = "\033[38;2;107;107;107m"
 	
 	Bold = "\033[1m"
