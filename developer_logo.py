@@ -29,22 +29,22 @@ def logo():
 
 def logo_2():
   print(rf"{Colors.Custom_yellow} ______  __ __      _____    _____  _____{Colors.End}")
-  time.sleep(0.5)
+  time.sleep(0.8)
 
   print(rf"{Colors.Custom_yellow}/ ____/\/_/\__/\  /\_____\ /\_____\/\ __/\  {Colors.End}")
-  time.sleep(0.5)
+  time.sleep(0.8)
 
   print(rf"{Colors.Custom_yellow}) ) __\/) ) ) ) )( (_____/( (_____/) )  \ \ {Colors.End}")
-  time.sleep(0.5)
+  time.sleep(0.8)
 
   print(rf"{Colors.Custom_yellow}\ \ \ /_/ /_/ /  \ \__\   \ \__\ /  / /\ \ \ {Colors.End}")
-  time.sleep(0.5)
+  time.sleep(0.8)
 
   print(rf"{Colors.Custom_yellow}_\ \ \ \ \ \_\/   / /__/_  / /__/_\ \ \/ / / {Colors.End}")
-  time.sleep(0.5)
+  time.sleep(0.8)
 
   print(rf"{Colors.Custom_yellow})____) ))_) )    ( (_____\( (_____\) )__/ / {Colors.End}")
-  time.sleep(0.5)
+  time.sleep(0.8)
 
   print(rf"{Colors.Custom_yellow}\____\/ \_\/      \/_____/ \/_____/\/___\/ {Colors.End}")
-  time.sleep(0.5)
+  time.sleep(0.8)
