@@ -1,5 +1,9 @@
+from color import Colors
+from additional_scripts.screen_clear import terminal_screen_clear
+
 def show_shop(coins, xp_points, inventory, player_stats):
     while True:
+        terminal_screen_clear()
         sub_line = "-" * 78
         print(sub_line)
 
@@ -16,7 +20,7 @@ def show_shop(coins, xp_points, inventory, player_stats):
         player_stats["damage"] = player_stats["base_damage"] + player_stats["bonus_damage"]
 
         # Player info
-        print(f"Coins: {coins} | XP: {xp_points} | Weapon: {player_stats['weapon']}")
+        print(f"Coins: {Colors.Custom_yellow}{coins}{Colors.End} | XP: {Colors.Custom_yellow}{xp_points}{Colors.End} | Weapon: {Colors.Custom_yellow}{player_stats['weapon']}{Colors.End}")
         print(sub_line)
 
         print("SHOP".center(78))
