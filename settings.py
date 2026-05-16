@@ -1,4 +1,5 @@
 import json
+from additional_scripts.screen_clear import terminal_screen_clear
 
 # Default settings
 settings = {
@@ -25,6 +26,7 @@ def load_settings():
 # Settings menu
 def settings_menu():
     while True:
+        terminal_screen_clear()
         print("\n--- SETTINGS ---")
         print("1. Username change")
         print("2. Theme change")
