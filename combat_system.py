@@ -52,19 +52,33 @@ def start_combat(player_hp, enemy_name, enemy_hp, enemy_min, enemy_max,
         time.sleep(0.5)
 
         # ENEMY TURN
+        special = False 
+
         if is_boss:
             damage, special = boss_special()
             player_hp -= damage
-
-            if special:
-                animate_text(f"{enemy_name} used SPECIAL ATTACK! ({damage} dmg)")
-            else:
-                animate_text(f"{enemy_name} attacks for {damage} damage")
-
         else:
             damage = enemy_attack(enemy_min, enemy_max)
             player_hp -= damage
+
+        if special:
+            animate_text(f"{enemy_name} used SPECIAL ATTACK! ({damage} dmg)")
+        else:
+            
             animate_text(f"{enemy_name} attacks for {damage} damage")
+
+    # T-1000 REGENERATION SYSTEM
+
+        if "T-1000" in enemy_name:
+            regen = random.randint(4, 8)
+            enemy_hp += regen
+
+        # optional cap so it doesn't go infinite
+            max_hp = 500
+            if enemy_hp > max_hp:
+                enemy_hp = max_hp
+
+            animate_text(f"{enemy_name} regenerates {regen} HP!")
 
         animate_text(f"Your HP: {player_hp}")
         time.sleep(0.5)
