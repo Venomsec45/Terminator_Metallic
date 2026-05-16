@@ -74,5 +74,102 @@ def level7_dialogue():
     animate_text("Sarah Connor: HOLD ON!")
     pause(2)
 
-def level7():
+def level7(player_state):
+    username = player_state["username"]
+
     level7_dialogue()
+
+    animate_text("Level 7: Highway Escape", 0.02)
+    pause(1)
+
+    animate_text("The storm grows stronger as the chase intensifies.")
+    animate_text("The T-1000 closes in on the motorcycle.")
+    pause(1)
+
+    # Combat
+    win, new_hp = start_combat(
+        player_state["hp"],
+        "T-1000 Pursuit Unit",
+        125,
+        11,
+        15,
+        player_damage=player_state["damage"]
+    )
+
+    player_state["hp"] = new_hp
+
+    if not win:
+        animate_text("The motorcycle crashes violently into the wreckage.")
+        animate_text("MISSION FAILED")
+        player_state["game_over"] = True
+        return player_state
+
+    animate_text("The T-1000 is knocked back—but not destroyed.")
+    animate_text("It reforms instantly behind them.")
+    pause(1)
+
+    animate_text("T-800: It is still active.")
+    animate_text("Sarah Connor: Of course it is...")
+    pause(1)
+
+    animate_text("The chase continues through burning debris.")
+    pause(1)
+
+    # Combat 2nd part
+    win, new_hp = start_combat(
+        player_state["hp"],
+        "T-1000 Highway Form",
+        150,
+        13,
+        17,
+        is_boss=True,
+        player_damage=player_state["damage"]
+    )
+
+    player_state["hp"] = new_hp
+
+    if win:
+
+        animate_text("The T-1000 loses balance mid-pursuit.")
+        animate_text("It collapses into molten metal on the highway.")
+        pause(1)
+
+        animate_text("John Connor: Did we finally lose it?")
+        animate_text("T-800: Temporarily.")
+        pause(1)
+
+        animate_text("Sarah Connor: That thing just won't stay down...")
+        pause(1)
+
+        player_state["coins"] += 110
+        player_state["xp"] += 110
+        player_state = check_level_up(player_state)
+
+        animate_text("MISSION COMPLETE: LEVEL 7")
+
+    else:
+
+        animate_text("The T-1000 overtakes the motorcycle.")
+        animate_text("Everything goes black in the crash.")
+        animate_text("MISSION FAILED")
+
+        player_state["game_over"] = True
+        return player_state
+
+    result = post_level_menu(
+        player_state["hp"],
+        player_state["coins"],
+        player_state["xp"],
+        player_state["inventory"],
+        player_state
+    )
+
+    player_state["hp"] = result[0]
+    player_state["coins"] = result[1]
+    player_state["xp"] = result[2]
+
+    action = result[5]
+
+    if action == "leave_campaign":
+        player_state["leave_campaign"] = True
+        return player_state

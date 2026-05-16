@@ -5,6 +5,7 @@ import os
 import sys
 import time
 
+
 # Text animation
 def animate_text(text, delay=0.03):
     for char in text:
@@ -16,6 +17,7 @@ def animate_text(text, delay=0.03):
 
 def pause(seconds=1):
     time.sleep(seconds)
+
 
 def level15_dialogue():
     animate_text("System: Loading Level 15...")
@@ -49,6 +51,7 @@ def level15_dialogue():
 
     animate_text("You: There has to be a way to stop the missiles.")
     animate_text("Kara: We were too late.")
+
     animate_text("Old military radios suddenly activate.")
     pause(1)
 
@@ -81,13 +84,13 @@ def level15_dialogue():
     animate_text("You: The whole mountain is shaking!")
     animate_text("Kara: Stay down!")
 
-    animate_text("Massive explosion sound echoes from far above.")
+    animate_text("A massive explosion echoes from far above.")
     animate_text("[LONG SILENCE]")
     pause(1)
 
     animate_text("You: ...Is it over?")
     animate_text("Kara: No.")
-    animate_text("Kara: That's only the beginning.")
+    animate_text("Kara: That was only the beginning.")
 
     animate_text("Emergency backup generators activate.")
     pause(1)
@@ -97,9 +100,9 @@ def level15_dialogue():
     pause(1)
 
     animate_text("You: This place feels like a tomb.")
-    animate_text("Kara: It probably was designed to be one.")
+    animate_text("Kara: It was probably designed to be one.")
 
-    animate_text("You walks through abandoned military control room.")
+    animate_text("You walks through an abandoned military control room.")
     pause(1)
 
     animate_text("You: Look at this...")
@@ -107,14 +110,17 @@ def level15_dialogue():
 
     animate_text("Kara: Governments always prepare for the end.")
     animate_text("Kara: They just never thought they'd lose control.")
+
     animate_text("Old computer terminals suddenly activate automatically.")
     pause(1)
 
     animate_text("System: External satellite feeds available.")
+
     animate_text("You: Can we see the surface?")
-    animate_text("Kara: ...You sure You want to?")
+    animate_text("Kara: ...Are you sure you want to?")
     animate_text("You: No.")
     animate_text("You: But I need to.")
+
     animate_text("Monitor screen slowly flickers on.")
     pause(1)
 
@@ -127,7 +133,8 @@ def level15_dialogue():
 
     animate_text("You: ...Everything's gone.")
     animate_text("Kara: Not everything.")
-    animate_text("You: How can You even say that right now?!")
+
+    animate_text("You: How can you even say that right now?!")
     animate_text("Kara: Because if humanity survives...")
     animate_text("Kara: Then this war isn't over.")
 
@@ -138,7 +145,8 @@ def level15_dialogue():
     animate_text("Automated voice: Skynet has assumed control of military assets.")
 
     animate_text("You: It controls everything now.")
-    animate_text("Automated voice: All remaining resistance forces regroup immediately.")
+
+    animate_text("Automated voice: All remaining resistance forces must regroup immediately.")
 
     animate_text("You: Resistance forces?")
     animate_text("Kara: That's how it starts.")
@@ -151,15 +159,16 @@ def level15_dialogue():
     animate_text("You: So we're trapped down here.")
     animate_text("Kara: For now.")
 
-    animate_text("You notices old photographs on bunker desk.")
+    animate_text("You notices old photographs on a bunker desk.")
     pause(1)
 
     animate_text("You: Families...")
-    animate_text("You: They were living normal lives a few hours ago.")
+    animate_text("You: They were living normal lives just hours ago.")
+
     animate_text("Kara: That's the terrifying part.")
     animate_text("Kara: The world ended on an ordinary day.")
 
-    animate_text("Static suddenly bursts from nearby radio.")
+    animate_text("Static suddenly bursts from a nearby radio.")
     pause(1)
 
     animate_text("Unknown survivor: Please respond!")
@@ -168,7 +177,8 @@ def level15_dialogue():
     animate_text("You: Someone survived!")
     animate_text("Kara: Answer them!")
     animate_text("You: This is Crystal Peak Shelter!")
-    animate_text("You: We read You!")
+    animate_text("You: We read you!")
+
     animate_text("Heavy static.")
     pause(1)
 
@@ -185,14 +195,16 @@ def level15_dialogue():
     animate_text("You: ...We couldn't help them.")
     animate_text("Kara: Not yet.")
 
-    animate_text("You punches nearby wall in frustration.")
+    animate_text("You punches the nearby wall in frustration.")
     pause(1)
 
     animate_text("You: We failed!")
     animate_text("You: We had one job!")
+
     animate_text("Kara: Listen to me.")
     animate_text("Kara: This was never about stopping Judgment Day.")
     animate_text("You: Then what was the point?!")
+
     animate_text("Kara: Survival.")
     animate_text("Kara: Humanity survives long enough to fight back.")
 
@@ -203,6 +215,7 @@ def level15_dialogue():
 
     animate_text("You: There are more survivors?")
     animate_text("Kara: Scattered across the country.")
+
     animate_text("You: Then we find them.")
     animate_text("Kara: Exactly.")
 
@@ -221,9 +234,11 @@ def level15_dialogue():
     animate_text("You: Wait...")
     animate_text("You: There are civilians here?")
     animate_text("Kara: Some military families made it inside before lockdown.")
+
     animate_text("You: So now we protect them too.")
     animate_text("Kara: Welcome to the Resistance.")
-    animate_text("You slowly looks toward bunker blast door.")
+
+    animate_text("You slowly looks toward the bunker blast door.")
     pause(1)
 
     animate_text("You: One day...")
@@ -251,10 +266,12 @@ def level15_dialogue():
     animate_text("You: ...Who was that?")
     animate_text("Kara: I don't know.")
     animate_text("Kara: But they just gave humanity hope.")
+
     animate_text("You reloads plasma rifle slowly.")
     pause(1)
 
     animate_text("You: Then let's give Skynet something to fear.")
+
     animate_text("Bunker lights dim as the camera slowly fades to darkness.")
     pause(1)
 

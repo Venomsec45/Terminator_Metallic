@@ -210,7 +210,8 @@ def level3(player_state):
         "T-600",
         50,
         8,
-        12
+        12,
+        player_damage=player_state["damage"]
     )
 
     player_state["hp"] = new_hp
@@ -269,6 +270,7 @@ def level3(player_state):
         pause(1)
 
         animate_text("MISSION FAILED")
+        player_state["game_over"] = True
 
         return player_state
     
@@ -284,7 +286,8 @@ def level3(player_state):
     player_state["coins"] = result[1]
     player_state["xp"] = result[2]
 
-    if result[5] == "exit":
-        exit()
+    action = result[5]
 
-    return player_state
+    if action == "leave_campaign":
+        player_state["leave_campaign"] = True
+        return player_state

@@ -68,5 +68,130 @@ def level10_dialogue():
     pause(2)
 
 
-def level10():
+def level10(player_state):
+    username = player_state["username"]
+
     level10_dialogue()
+
+    animate_text("Level 10: Cyberdyne Final Assault", 0.02)
+    pause(1)
+
+    animate_text("The entire facility is collapsing under heavy fire.")
+    animate_text("This is the final stand against Skynet's creation.")
+    pause(1)
+
+    # Phase 1: Swat assault
+
+    animate_text("\n--- PHASE 1: SWAT BREACH ---", 0.02)
+    pause(1)
+
+    win, new_hp = start_combat(
+        player_state["hp"],
+        "SWAT Assault Unit",
+        250,
+        14,
+        18,
+        player_damage=player_state["damage"]
+    )
+
+    player_state["hp"] = new_hp
+
+    if not win:
+        animate_text("The SWAT units overwhelm the resistance.")
+        animate_text("MISSION FAILED")
+        player_state["game_over"] = True
+        return player_state
+
+    animate_text("SWAT units are down... but something else is coming.")
+    pause(1)
+
+    # Phase 2 T-1000 Prototype Form
+    animate_text("\n--- PHASE 2: T-1000 PROTOTYPE ---", 0.02)
+    pause(1)
+
+    win, new_hp = start_combat(
+        player_state["hp"],
+        "T-1000 Prototype Form",
+        275,
+        16,
+        20,
+        is_boss=True,
+        player_damage=player_state["damage"]
+    )
+
+    player_state["hp"] = new_hp
+
+    if not win:
+        animate_text("The T-1000 overwhelms the team.")
+        animate_text("MISSION FAILED")
+        player_state["game_over"] = True
+        return player_state
+
+    animate_text("The T-1000 collapses… but begins to reform.")
+    animate_text("Warning: Regeneration detected.")
+    pause(1)
+
+
+    # Phase 3: FInal form with boss HP regen
+
+    animate_text("\n--- PHASE 3: FINAL FORM ---", 0.02)
+    pause(1)
+
+    animate_text("The T-1000 stabilizes into its most dangerous state.")
+    animate_text("It will not stay down.")
+    pause(1)
+
+    win, new_hp = start_combat(
+        player_state["hp"],
+        "T-1000 Final Form",
+        300,
+        18,
+        22,
+        is_boss=True,
+        player_damage=player_state["damage"]
+    )
+
+    player_state["hp"] = new_hp
+
+    if win:
+
+        animate_text("The T-1000 finally loses structural stability.")
+        animate_text("Its form dissolves into inert liquid metal.")
+        pause(1)
+
+        animate_text("John Connor: It’s finally over...")
+        animate_text("T-800: Confirmed termination.")
+        pause(1)
+
+        player_state["coins"] += 180
+        player_state["xp"] += 180
+        player_state = check_level_up(player_state)
+
+        animate_text("MISSION COMPLETE: LEVEL 10")
+
+    else:
+
+        animate_text("The T-1000 adapts beyond control.")
+        animate_text("Everything is lost in the collapse.")
+        animate_text("MISSION FAILED")
+
+        player_state["game_over"] = True
+        return player_state
+
+    result = post_level_menu(
+        player_state["hp"],
+        player_state["coins"],
+        player_state["xp"],
+        player_state["inventory"],
+        player_state
+    )
+
+    player_state["hp"] = result[0]
+    player_state["coins"] = result[1]
+    player_state["xp"] = result[2]
+
+    action = result[5]
+
+    if action == "leave_campaign":
+        player_state["leave_campaign"] = True
+        return player_state

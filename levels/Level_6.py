@@ -140,9 +140,10 @@ def level6(player_state):
     win, new_hp = start_combat(
         player_state["hp"],
         "T-800 Patrol Unit",
-        50,
+        90,
         10,
-        14
+        14,
+        player_damage=player_state["damage"]
     )
 
     player_state["hp"] = new_hp
@@ -196,10 +197,11 @@ def level6(player_state):
     win, new_hp = start_combat(
         player_state["hp"],
         "T-1000 Prototype",
-        70,
+        110,
         12,
         16,
-        is_boss=True
+        is_boss=True,
+        player_damage=player_state["damage"]
     )
 
     player_state["hp"] = new_hp
@@ -222,9 +224,21 @@ def level6(player_state):
         animate_text("T-800: It will return.")
         pause(1)
 
-        animate_text("John Connor: So this isn't over?")
-        animate_text("Kyle Reese: No...")
-        animate_text("Kyle Reese: This is only the beginning.")
+        animate_text("Kyle Reese: I’ve done what I needed to do here.")
+        pause(1)
+
+        animate_text("Kyle Reese looks toward the horizon.")
+        animate_text("Kyle Reese: I can’t stay in this timeline any longer.")
+        pause(1)
+
+        animate_text("Kyle Reese: John… Sarah… you’re safe with him now.")
+        pause(1)
+
+        animate_text("Kyle Reese steps back into the damaged alleyway.")
+        animate_text("His presence fades into the shifting timeline.")
+        pause(1)
+
+        animate_text("SYSTEM: Kyle Reese has exited the active timeline.")
         pause(1)
 
         player_state["coins"] += 100
@@ -240,7 +254,7 @@ def level6(player_state):
         pause(1)
 
         animate_text("MISSION FAILED")
-
+        player_state["game_over"] = True
         return player_state
     
     result = post_level_menu(
@@ -255,7 +269,8 @@ def level6(player_state):
     player_state["coins"] = result[1]
     player_state["xp"] = result[2]
 
-    if result[5] == "exit":
-        exit()
+    action = result[5]
 
-    return player_state
+    if action == "leave_campaign":
+        player_state["leave_campaign"] = True
+        return player_state

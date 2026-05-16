@@ -168,7 +168,8 @@ def level1(player_state):
         "Scout Drone",
         30,
         5,
-        8
+        8,
+        player_damage=player_state["damage"]
     )
 
     player_state["hp"] = new_hp
@@ -193,9 +194,9 @@ def level1(player_state):
     else:
         animate_text("Kyle Reese falls to the ground...")
         animate_text("MISSION FAILED")
+        player_state["game_over"] = True
         return player_state
 
-    # POST LEVEL MENU (FIXED COMMA ERROR)
     result = post_level_menu(
         player_state["hp"],
         player_state["coins"],
@@ -208,7 +209,8 @@ def level1(player_state):
     player_state["coins"] = result[1]
     player_state["xp"] = result[2]
 
-    if result[5] == "exit":
-        exit()
+    action = result[5]
 
-    return player_state
+    if action == "leave_campaign":
+        player_state["leave_campaign"] = True
+        return player_state

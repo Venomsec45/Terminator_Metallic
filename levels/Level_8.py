@@ -76,6 +76,104 @@ def level8_dialogue():
     animate_text(">>> BOSS ENCOUNTER: T-1000 <<<", 0.01)
     pause(2)
 
-def level8():
+def level8(player_state):
+    username = player_state["username"]
+
     level8_dialogue()
 
+    animate_text("Level 8: Pescadero Outbreak", 0.02)
+    pause(1)
+
+    animate_text("The hospital is now in full lockdown.")
+    animate_text("Steel doors slam shut across the corridors.")
+    pause(1)
+
+    # Combat 1st part
+    win, new_hp = start_combat(
+        player_state["hp"],
+        "T-1000 Infiltrator",
+        150,
+        12,
+        16,
+        player_damage=player_state["damage"]
+    )
+
+    player_state["hp"] = new_hp
+
+    if not win:
+        animate_text("The T-1000 breaks through the barricade.")
+        animate_text("The hallway goes silent.")
+        animate_text("MISSION FAILED")
+        player_state["game_over"] = True
+        return player_state
+
+    animate_text("The T-1000 staggers—but immediately reforms.")
+    animate_text("It adapts to every shot fired.")
+    pause(1)
+
+    animate_text("T-800: It is learning faster.")
+    animate_text("Sarah Connor: Then we don’t have much time.")
+    pause(1)
+
+    animate_text("Emergency alarms intensify across the hospital.")
+    pause(1)
+
+    # Combat 2nd part
+    win, new_hp = start_combat(
+        player_state["hp"],
+        "T-1000 Hallway Form",
+        175,
+        13,
+        18,
+        is_boss=True,
+        player_damage=player_state["damage"]
+    )
+
+    player_state["hp"] = new_hp
+
+    if win:
+
+        animate_text("The T-1000 collapses into a liquid pool.")
+        animate_text("It flows through the cracks in the floor.")
+        pause(1)
+
+        animate_text("John Connor: Did we stop it?")
+        animate_text("T-800: Negative.")
+        animate_text("T-800: It has retreated.")
+        pause(1)
+
+        animate_text("Sarah Connor: It always comes back...")
+        pause(1)
+
+        player_state["coins"] += 120
+        player_state["xp"] += 120
+        player_state = check_level_up(player_state)
+
+        animate_text("MISSION COMPLETE: LEVEL 8")
+
+    else:
+
+        animate_text("The lights flicker one final time.")
+        animate_text("Everything cuts to black.")
+        animate_text("MISSION FAILED")
+
+        player_state["game_over"] = True
+        return player_state
+
+    result = post_level_menu(
+        player_state["hp"],
+        player_state["coins"],
+        player_state["xp"],
+        player_state["inventory"],
+        player_state
+    )
+
+    player_state["hp"] = result[0]
+    player_state["coins"] = result[1]
+    player_state["xp"] = result[2]
+
+    action = result[5]
+
+    if action == "leave_campaign":
+        player_state["leave_campaign"] = True
+        return player_state
