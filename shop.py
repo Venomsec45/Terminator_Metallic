@@ -1,32 +1,32 @@
-from color import Colors
-from additional_scripts.screen_clear import terminal_screen_clear
-
-def show_shop(coins, xp_points, inventory, player_stats):
+def show_shop(player_state):
     while True:
-        terminal_screen_clear()
         sub_line = "-" * 78
         print(sub_line)
 
-        # SAFE DEFAULTS
-        player_stats.setdefault("weapon", "Fists")
-        player_stats.setdefault("base_damage", 10)
-        player_stats.setdefault("bonus_damage", 0)
-        player_stats.setdefault("damage", 10)
-        player_stats.setdefault("hp", 100)
-        player_stats.setdefault("max_hp", 100)
-        player_stats.setdefault("xp_boost", 1)
+        # DEFAULTS (SAFE INIT)
+        player_state.setdefault("weapon", "Fists")
+        player_state.setdefault("base_damage", 10)
+        player_state.setdefault("bonus_damage", 0)
+        player_state.setdefault("damage", 10)
+        player_state.setdefault("hp", 100)
+        player_state.setdefault("max_hp", 100)
+        player_state.setdefault("xp_boost", 1)
+        player_state.setdefault("inventory", [])
 
-        # Recalculate damage safety
-        player_stats["damage"] = player_stats["base_damage"] + player_stats["bonus_damage"]
+        # Recalculate damage
+        player_state["damage"] = player_state["base_damage"] + player_state["bonus_damage"]
 
-        # Player info
-        print(f"Coins: {Colors.Custom_yellow}{coins}{Colors.End} | XP: {Colors.Custom_yellow}{xp_points}{Colors.End} | Weapon: {Colors.Custom_yellow}{player_stats['weapon']}{Colors.End}")
+        print(
+            f"Coins: {player_state.get('coins', 0)} | "
+            f"XP: {player_state.get('xp', 0)} | "
+            f"HP: {player_state['hp']}/{player_state['max_hp']} | "
+            f"Weapon: {player_state['weapon']}"
+        )
+
         print(sub_line)
-
         print("SHOP".center(78))
         print(sub_line)
 
-        # SHOP ITEMS
         shop_items = {
             1: ("AMT Hardballer Longslide", 25, "weapon", 15),
             2: ("Uzi 9mm SMG", 75, "weapon", 25),
@@ -49,22 +49,22 @@ def show_shop(coins, xp_points, inventory, player_stats):
             print(f"{key}. {name:<35} - {cost} coins")
 
         print("\nInventory:")
-        if not inventory:
+        if not player_state["inventory"]:
             print("- Empty")
         else:
-            for i, item in enumerate(inventory, 1):
+            for i, item in enumerate(player_state["inventory"], 1):
                 print(f"{i}. {item}")
 
         print("\nOptions:")
-        print("12. Buy Item")
-        print("13. Sell Item")
-        print("14. Exit Shop")
+        print("13. Buy Item")
+        print("14. Sell Item")
+        print("15. Exit Shop")
 
         print(sub_line)
         choice = input("Enter your choice: ")
 
         # ---------------- BUY ----------------
-        if choice == "12":
+        if choice == "13":
             try:
                 item_choice = int(input("Enter item number to buy: "))
 
@@ -74,77 +74,67 @@ def show_shop(coins, xp_points, inventory, player_stats):
 
                 name, cost, stat, value = shop_items[item_choice]
 
-                if coins < cost:
+                if player_state["coins"] < cost:
                     print("Not enough coins.")
                     continue
 
-                coins -= cost
-                inventory.append(name)
+                player_state["coins"] -= cost
 
-                # WEAPON SYSTEM (AUTO-EQUIP)
+                if stat != "heal":
+                    player_state["inventory"].append(name)
+
                 if stat == "weapon":
-                    player_stats["weapon"] = name
-                    player_stats["base_damage"] = value
-                    player_stats["damage"] = player_stats["base_damage"] + player_stats["bonus_damage"]
-                    print(f"Equipped {name} (+{value} base damage)")
+                    player_state["weapon"] = name
+                    player_state["base_damage"] = value
+                    print(f"Equipped {name}")
 
-                # MAX HP UPGRADE
                 elif stat == "hp":
-                    player_stats["max_hp"] += value
-                    player_stats["hp"] = player_stats["max_hp"]
-                    print(f"Max HP increased by {value}")
+                    player_state["max_hp"] += value
+                    player_state["hp"] = player_state["max_hp"]
+                    print("Max HP increased!")
 
-                # DAMAGE BOOST
                 elif stat == "damage":
-                    player_stats["bonus_damage"] += value
-                    player_stats["damage"] = player_stats["base_damage"] + player_stats["bonus_damage"]
-                    print(f"Damage increased by {value}")
+                    player_state["bonus_damage"] += value
+                    print("Damage increased!")
 
-                # XP BOOST
                 elif stat == "xp_boost":
-                    player_stats["xp_boost"] *= value
-                    print("XP boost upgraded")
+                    player_state["xp_boost"] *= value
+                    print("XP boost upgraded!")
 
-                # HEAL ITEM
                 elif stat == "heal":
-                    player_stats["hp"] = min(
-                        player_stats["hp"] + value,
-                        player_stats["max_hp"]
+                    old_hp = player_state["hp"]
+                    player_state["hp"] = min(
+                        player_state["hp"] + value,
+                        player_state["max_hp"]
                     )
-                    print(f"Restored {value} HP")
-
-                else:
-                    print(f"Purchased {name}")
+                    healed = player_state["hp"] - old_hp
+                    print(f"Healed {healed} HP!")
 
             except ValueError:
                 print("Invalid input.")
 
         # ---------------- SELL ----------------
-        elif choice == "13":
-            if not inventory:
+        elif choice == "14":
+            if not player_state["inventory"]:
                 print("Nothing to sell.")
                 continue
 
-            try:
-                for i, item in enumerate(inventory, 1):
-                    print(f"{i}. {item}")
+            for i, item in enumerate(player_state["inventory"], 1):
+                print(f"{i}. {item}")
 
+            try:
                 sell_choice = int(input("Choose item to sell: ")) - 1
 
-                if 0 <= sell_choice < len(inventory):
-                    sold_item = inventory.pop(sell_choice)
-                    coins += 50
-                    print(f"Sold {sold_item} for 50 coins.")
+                if 0 <= sell_choice < len(player_state["inventory"]):
+                    sold_item = player_state["inventory"].pop(sell_choice)
+                    player_state["coins"] += 25
+                    print(f"Sold {sold_item} for 25 coins.")
                 else:
                     print("Invalid choice.")
-
             except ValueError:
                 print("Invalid input.")
 
         # ---------------- EXIT ----------------
-        elif choice == "14":
+        elif choice == "15":
             print("Leaving shop...")
-            return coins, xp_points, inventory, player_stats
-
-        else:
-            print("Invalid choice.")
+            return player_state
