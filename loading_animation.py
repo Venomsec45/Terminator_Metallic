@@ -7,7 +7,7 @@ from additional_scripts.screen_clear import terminal_screen_clear
 from color import Colors
 
 # Stores a random integer
-random_time = random.randint(2, 3)
+random_time = random.randint(1, 2)
 
 # Power animation
 # Uses a for loop to create a stylish loading bar
@@ -43,7 +43,7 @@ def status_animation():
 	time.sleep(random_time); print(f"[{Colors.Custom_green_1}STABLE{Colors.End}]")
 	time.sleep(0.2)
 
-	print(f"\nSERVER: ", end="", flush=True)
+	print(f"SERVER: ", end="", flush=True)
 	time.sleep(random_time); print(f"[{Colors.Custom_green_1}ON{Colors.End}]")
 	time.sleep(0.2)
 
@@ -88,7 +88,7 @@ def status_animation():
 	print("NUCLEAR WEAPONS: ", end="", flush=True)
 	time.sleep(random_time); print(f"[{Colors.Custom_green_1}ACTIVATED{Colors.End}]")
 	time.sleep(0.2)	
-	
+
 	print(f"\n{Colors.Custom_green_1}SCANNING ENVIRONMENT FOR THREATS{Colors.End}")
 	time.sleep(2)
 	print("STATUS: ", end="", flush=True)
@@ -111,7 +111,7 @@ def skynet_activate():
 
 		print(f"\r{Colors.Custom_blue}ACCESSING SKYNET: {Colors.End}|{bar}| {int_1}%", end="")
 		sys.stdout.flush()
-		time.sleep(0.5)
+		time.sleep(0.3)
 		
 	print(f"\n{Colors.Custom_green_1}SKYNET ACCESSED SUCCESSFULLY!{Colors.End}\n")
 
