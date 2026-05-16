@@ -32,7 +32,7 @@ def lobby_layout(username):
     }
     try:
         while True:
-            subprocess.run("clear" if os.name == "posix" else "cls")
+            subprocess.run("clear" if os.name == "posix" else "cls", shell=True)
             choice = input(f"""
     ╔═══════════════════════════════════════════════════════════════════════════════════════╗
     ║ {date}{" " * (space - len(date) - 1) + "║"}                                                
@@ -94,15 +94,8 @@ def lobby_layout(username):
                 solo_match(player)
 
             elif choice == "3":
-                player_state = show_shop(
-                    player_state["coins"],
-                    player_state["xp"],
-                    player_state["inventory"],
-                    player_state
-                )
-
-                player_state["coins"], player_state["xp"], player_state["inventory"], player_state = player_state
-
+                player_state = show_shop(player_state)
+                
             elif choice == "4":
                 settings_menu()
 
