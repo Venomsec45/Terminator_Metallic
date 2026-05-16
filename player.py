@@ -97,8 +97,8 @@ class Player(Character):
         item = self.inventory.pop(index)
 
         # Item effects
-        if item == "Health Potion":
-            self.heal(25)
+        if item == "Medkit":
+            self.heal(40)
 
         elif item == "Shield":
             print("Shield activated! Reduced next damage.")
