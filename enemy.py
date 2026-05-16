@@ -50,7 +50,7 @@ class T1000(Enemy):
         super().__init__("T-1000", 120, 18, 80, 50)
 
     def special_ability(self):
-        heal = random.randint(5, 15)
+        heal = random.randint(10, 25)
         self.hp += heal
         if self.hp > self.max_hp:
             self.hp = self.max_hp
