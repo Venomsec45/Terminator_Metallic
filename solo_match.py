@@ -1,5 +1,6 @@
 from player import Player
 from enemy import random_enemy
+from color import Colors
 
 
 # Solo Match Function
@@ -7,17 +8,17 @@ def solo_match(player):
 
     enemy = random_enemy()
 
-    print(f"\nFight started against {enemy.name}!")
+    print(f"\nFight started against {Colors.Custom_red}{enemy.name}!{Colors.End}")
 
     # Combat Loop
     while player.is_alive() and enemy.is_alive():
 
-        print("\n--- STATUS ---")
-        print(f"Your HP: {player.hp}/{player.max_hp}")
+        print("\n" + "-" * 40 + "STATUS" + "-" * 40)
+        print(f"Your HP: {Colors.Custom_green_1}{player.hp}{Colors.End}/{Colors.Custom_green_1}{player.max_hp}{Colors.End}")
         print(f"{enemy.name} HP: {enemy.hp}")
 
-        print("\n1. Attack")
-        print("2. Use Item")
+        print(f"\n1. {Colors.Custom_red}Attack{Colors.End}")
+        print(f"2. {Colors.Custom_blue}Use Item{Colors.End}")
 
         action = input("Choose action: ")
 
@@ -28,7 +29,7 @@ def solo_match(player):
             player.use_item()
 
         else:
-            print("Invalid choice!")
+            print(f"{Colors.Custom_red}Invalid choice!{Colors.End}")
             continue
 
         # Enemy defeated check
@@ -39,13 +40,13 @@ def solo_match(player):
         enemy.attack(player)
 
     # Results
-    print("\n--- RESULT ---")
+    print("\n" + "-" * 40 + "RESULT" + "-" * 40)
 
     if player.hp <= 0:
-        print("You lost the match!")
+        print(f"{Colors.Custom_red}You lost the match!{Colors.End}")
 
     else:
-        print("You won the match!")
+        print(f"{Colors.Custom_green_1}You won the match!{Colors.End}")
         player.gain_rewards(enemy.xp_reward, enemy.coin_reward)
 
     # Reset HP
