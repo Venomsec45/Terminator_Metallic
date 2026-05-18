@@ -34,15 +34,14 @@ def lobby_layout(username):
         while True:
             subprocess.run("clear" if os.name == "posix" else "cls", shell=True)
             choice = input(f"""
+      {date}                                             
+                                                                                                                                            
+      Hello, {color.Custom_yellow}{username}{color.End}                                                           
+                                                                                            
+      Weapon: {color.Custom_yellow}{player_state["weapon"]}{color.End}   
+
+      Coins: {color.Custom_yellow}{player_state["coins"]}{color.End}   |   XP: {color.Custom_yellow}{player_state["xp"]}{color.End}                                                                                                                                                                          
     ╔═══════════════════════════════════════════════════════════════════════════════════════╗
-    ║ {date}{" " * (space - len(date) - 1) + "║"}                                                
-    ║                                                                                       ║                                                
-    ║ Hello, {username}{" " * (space - len(username) - 5) + "║"}                                                               
-    ║                                                                                       ║
-    ║ Weapon: {player_state["weapon"]}{" " * (space - len(player_state["weapon"]) - 5) + "║"}                                                                                     
-    ║                                                                                       ║
-    ║ Coins: {player_state["coins"]} | XP: {player_state["xp"]}{" " * 10 + "║"}                                                                                                                                                                            
-    ╠═══════════════════════════════════════════════════════════════════════════════════════╣
     ║ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ ║            
     ║ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ ║  
     ║ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ ║            
