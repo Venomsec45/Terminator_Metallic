@@ -1,5 +1,9 @@
+from color import Colors
+from additional_scripts.screen_clear import terminal_screen_clear
+
 def show_shop(player_state):
     while True:
+        terminal_screen_clear()
         sub_line = "-" * 78
         print(sub_line)
 
@@ -17,14 +21,14 @@ def show_shop(player_state):
         player_state["damage"] = player_state["base_damage"] + player_state["bonus_damage"]
 
         print(
-            f"Coins: {player_state.get('coins', 0)} | "
-            f"XP: {player_state.get('xp', 0)} | "
-            f"HP: {player_state['hp']}/{player_state['max_hp']} | "
-            f"Weapon: {player_state['weapon']}"
+            f"Coins: {Colors.Custom_yellow}{player_state.get('coins', 0)}{Colors.End} | "
+            f"XP: {Colors.Custom_yellow}{player_state.get('xp', 0)}{Colors.End} | "
+            f"HP: {Colors.Custom_yellow}{player_state['hp']}/{player_state['max_hp']}{Colors.End} | "
+            f"Weapon: {Colors.Custom_yellow}{player_state['weapon']}{Colors.End}"
         )
 
         print(sub_line)
-        print("SHOP".center(78))
+        print(f"{Colors.Custom_blue}SHOP{Colors.End}".center(78))
         print(sub_line)
 
         shop_items = {
@@ -46,7 +50,7 @@ def show_shop(player_state):
 
         print("\nItems:")
         for key, (name, cost, stat, value) in shop_items.items():
-            print(f"{key}. {name:<35} - {cost} coins")
+            print(f"{key}. {name:<35} - {Colors.Custom_yellow}{cost}{Colors.End} coins")
 
         print("\nInventory:")
         if not player_state["inventory"]:
