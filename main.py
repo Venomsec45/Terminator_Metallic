@@ -3,7 +3,7 @@ import sys
 from additional_scripts.screen_clear import terminal_screen_clear
 from additional_scripts.line_animation import lines
 from color import Colors
-from developer_logo import logo, logo_2
+from developer_logo import logo, logo_2, logo_3
 from loading_animation import power_animation, status_animation, skynet_activate
 from lobby import lobby_layout
 
@@ -38,7 +38,8 @@ def run_intro():
         terminal_screen_clear,
         power_animation,
         status_animation,
-        skynet_activate
+        skynet_activate,
+        logo_3
     ]:
         loading_function_call()    
 
