@@ -111,7 +111,7 @@ def skynet_activate():
 
 		print(f"\r{Colors.Custom_blue}ACCESSING SKYNET: {Colors.End}|{bar}| {int_1}%", end="")
 		sys.stdout.flush()
-		time.sleep(0.3)
+		time.sleep(0.08)
 		
 	print(f"\n{Colors.Custom_green_1}SKYNET ACCESSED SUCCESSFULLY!{Colors.End}\n")
 
