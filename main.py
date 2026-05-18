@@ -39,6 +39,7 @@ def run_intro():
         power_animation,
         status_animation,
         skynet_activate,
+        terminal_screen_clear,
         logo_3
     ]:
         loading_function_call()    
