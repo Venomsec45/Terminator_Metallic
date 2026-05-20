@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 import random
+from color import Colors
 
 # Base Enemy class
 class Enemy(ABC):
@@ -15,7 +16,7 @@ class Enemy(ABC):
         self.hp -= amount
         if self.hp < 0:
             self.hp = 0
-        print(f"{self.name} takes {amount} damage! HP: {self.hp}/{self.max_hp}")
+        print(f"{Colors.Custom_red}{self.name} takes {amount} damage!{Colors.End} HP: {Colors.Custom_green_1}{self.hp}{Colors.End}/{Colors.Custom_green_1}{self.max_hp}{Colors.End}")
 
     def is_alive(self):
         return self.hp > 0
@@ -27,7 +28,7 @@ class Enemy(ABC):
         else:
             dmg = random.randint(self.damage - 2, self.damage + 2)
 
-        print(f"{self.name} attacks for {dmg} damage!")
+        print(f"{Colors.Custom_red}{self.name} attacks for {dmg} damage!{Colors.End}")
         target.take_damage(dmg)
 
     @abstractmethod
