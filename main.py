@@ -16,10 +16,14 @@ def get_username():
         # Check if username is empty
         if username == "":
             print(f"{Colors.Custom_red}Username cannot be blank.{Colors.End}")
+            time.sleep(1.5)
+            terminal_screen_clear()
 
         # Check if username is too short
         elif len(username) < 5:
             print(f"{Colors.Custom_red}Username must be at least 5 characters long.{Colors.End}")
+            time.sleep(1.5)
+            terminal_screen_clear()
 
         # If valid, return the username
         else:
