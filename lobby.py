@@ -27,9 +27,11 @@ def lobby_layout(username):
         "base_damage": 10,
         "bonus_damage": 0,
         "xp_boost": 1,
-        "weapon": "Fists"
-
+        "weapon": "Fists",
+        "game_over": False,
+        "leave_campaign": False
     }
+
     try:
         while True:
             subprocess.run("clear" if os.name == "posix" else "cls", shell=True)
@@ -99,13 +101,12 @@ def lobby_layout(username):
                 settings_menu()
 
             elif choice == "5":
-                print(f"{color.Red}Exiting...{color.End}")
+                print(f"{color.Red}    Exiting...{color.End}")
                 time.sleep(1.5)
                 sys.exit(2)
 
             else:
-                print("Invalid choice.")
-                time.sleep(1.5)
+                pass
 
     except KeyboardInterrupt:
         print(f"\n{color.Red}Game stopped{color.End}")
