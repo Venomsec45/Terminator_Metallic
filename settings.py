@@ -27,14 +27,14 @@ def load_settings():
 def settings_menu():
     while True:
         terminal_screen_clear()
-        print("\n--- SETTINGS ---")
+        print("\n" + "-" * 40 + "SETTINGS" + "-" * 40 + "\n")
         print("1. Username change")
         print("2. Theme change")
-        print("3. Text save results (True/False)")
-        print("4. Save player status in JSON (True/False)")
+        print("3. Text save results")
+        print("4. Save player status in JSON")
         print("5. Back")
 
-        choice = input("Choose: ")
+        choice = input("> ")
 
         if choice == "1":
             username = input("Enter username (min 5 chars): ")
