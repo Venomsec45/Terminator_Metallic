@@ -12,67 +12,43 @@ from levels.Level_11 import level11
 from levels.Level_12 import level12
 from levels.Level_13 import level13
 from levels.Level_14 import level14
+from levels.Level_15 import level15_dialogue
 
 from game_flow import run_level
 from additional_scripts.screen_clear import terminal_screen_clear
 
 def start_campaign(player_state):
     terminal_screen_clear()
+    
     player_state = run_level(level1, "Level 1", player_state)
-    if player_state.get("game_over") or player_state.get("leave_campaign"):
-        return player_state
 
     player_state = run_level(level2, "Level 2", player_state)
-    if player_state.get("game_over") or player_state.get("leave_campaign"):
-        return player_state
 
     player_state = run_level(level3, "Level 3", player_state)
-    if player_state.get("game_over") or player_state.get("leave_campaign"):
-        return player_state
 
     player_state = run_level(level4, "Level 4", player_state)
-    if player_state.get("game_over") or player_state.get("leave_campaign"):
-        return player_state
 
     player_state = run_level(level5, "Level 5", player_state)
-    if player_state.get("game_over") or player_state.get("leave_campaign"):
-        return player_state
 
     player_state = run_level(level6, "Level 6", player_state)
-    if player_state.get("game_over") or player_state.get("leave_campaign"):
-        return player_state
 
     player_state = run_level(level7, "Level 7", player_state)
-    if player_state.get("game_over") or player_state.get("leave_campaign"):
-        return player_state
 
     player_state = run_level(level8, "Level 8", player_state)
-    if player_state.get("game_over") or player_state.get("leave_campaign"):
-        return player_state
 
     player_state = run_level(level9, "Level 9", player_state)
-    if player_state.get("game_over") or player_state.get("leave_campaign"):
-        return player_state
 
     player_state = run_level(level10, "Level 10", player_state)
-    if player_state.get("game_over") or player_state.get("leave_campaign"):
-        return player_state
 
     player_state = run_level(level11, "Level 11", player_state)
-    if player_state.get("game_over") or player_state.get("leave_campaign"):
-        return player_state
 
     player_state = run_level(level12, "Level 12", player_state)
-    if player_state.get("game_over") or player_state.get("leave_campaign"):
-        return player_state
 
     player_state = run_level(level13, "Level 13", player_state)
-    if player_state.get("game_over") or player_state.get("leave_campaign"):
-        return player_state
 
     player_state = run_level(level14, "Level 14", player_state)
-    if player_state.get("game_over") or player_state.get("leave_campaign"):
-        return player_state
+
+    level15_dialogue()
 
     print("\nCAMPAIGN COMPLETE!")
     print(f"Final Coins: {player_state['coins']}")
