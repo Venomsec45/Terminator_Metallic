@@ -14,9 +14,10 @@ from levels.Level_13 import level13
 from levels.Level_14 import level14
 
 from game_flow import run_level
-
+from additional_scripts.screen_clear import terminal_screen_clear
 
 def start_campaign(player_state):
+    terminal_screen_clear()
     player_state = run_level(level1, "Level 1", player_state)
     if player_state.get("game_over") or player_state.get("leave_campaign"):
         return player_state
