@@ -251,7 +251,6 @@ def level2(player_state):
         player_state["coins"],
         player_state["xp"],
         player_state["inventory"],
-        player_state
     )
 
     player_state["hp"] = result[0]

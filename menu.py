@@ -3,6 +3,7 @@ from color import Colors
 import time
 
 def post_level_menu(player_hp, coins, xp, inventory, player_stats):
+    player_data = coins, xp, inventory, player_stats
 
     while True:
         print("\n" + "=" * 40 + "NEXT ACTION" + "=" * 40)
@@ -17,7 +18,7 @@ def post_level_menu(player_hp, coins, xp, inventory, player_stats):
 
         elif choice == "2":
             coins, xp, inventory, player_stats = show_shop(
-                coins, xp, inventory, player_stats
+                player_data
             )
 
         elif choice == "3":

@@ -95,15 +95,15 @@ def show_shop(player_state):
                 elif stat == "hp":
                     player_state["max_hp"] += value
                     player_state["hp"] = player_state["max_hp"]
-                    print("Max HP increased!")
+                    print(f"{Colors.Custom_green_1}Max HP increased!{Colors.End}")
 
                 elif stat == "damage":
                     player_state["bonus_damage"] += value
-                    print("Damage increased!")
+                    print(f"{Colors.Custom_green_1}Damage increased!{Colors.End}")
 
                 elif stat == "xp_boost":
                     player_state["xp_boost"] *= value
-                    print("XP boost upgraded!")
+                    print(f"{Colors.Custom_yellow}XP boost upgraded!{Colors.End}")
 
                 elif stat == "heal":
                     old_hp = player_state["hp"]
@@ -115,7 +115,7 @@ def show_shop(player_state):
                     print(f"Healed {healed} HP!")
 
             except ValueError:
-                print("Invalid input.")
+                print(f"{Colors.Custom_red}Invalid input{Colors.End}")
 
         # ---------------- SELL ----------------
         elif choice == "14":
@@ -134,9 +134,9 @@ def show_shop(player_state):
                     player_state["coins"] += 25
                     print(f"Sold {sold_item} for 25 coins.")
                 else:
-                    print("Invalid choice.")
+                    print(f"{Colors.Custom_red}Invalid choice{Colors.End}")
             except ValueError:
-                print("Invalid input.")
+                print(f"{Colors.Custom_red}Invalid input{Colors.End}")
 
         # ---------------- EXIT ----------------
         elif choice == "15":
