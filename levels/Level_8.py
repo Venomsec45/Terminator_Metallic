@@ -57,16 +57,15 @@ def level8_dialogue():
     pause(1)
 
     animate_text("T-800: Sarah Connor.")
-    animate_text("T-800: Come with me if you want to live.")
+    animate_text("T-800: Stay Close.")
     pause(1)
 
     animate_text("Sarah Connor stares in shock.")
-    animate_text("Sarah Connor: You...")
-    animate_text("Sarah Connor: You're one of THEM!")
+    animate_text("Sarah Connor: Its still alive isn`t it?")
     pause(1)
 
-    animate_text("John Connor: Mom wait!")
-    animate_text("John Connor: He's here to help us!")
+    animate_text("John Connor: Yes, but we can stop it.")
+    animate_text("John Connor: But first we need to run")
     pause(1)
 
     animate_text("The hallway erupts into chaos.")
@@ -145,7 +144,7 @@ def level8(player_state):
         animate_text("Sarah Connor: It always comes back...")
         pause(1)
 
-        player_state["coins"] += 120
+        player_state["coins"] += 150
         player_state["xp"] += 120
         player_state = check_level_up(player_state)
 
@@ -171,9 +170,12 @@ def level8(player_state):
     player_state["hp"] = result[0]
     player_state["coins"] = result[1]
     player_state["xp"] = result[2]
+    player_state["inventory"] = result[3]
 
-    action = result[5]
+    action = result[-1]
 
     if action == "leave_campaign":
         player_state["leave_campaign"] = True
         return player_state
+    
+    return player_state

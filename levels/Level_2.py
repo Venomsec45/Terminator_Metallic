@@ -226,7 +226,7 @@ def level2(player_state):
         animate_text("Kyle Reese: This city gets more dangerous at night.")
         pause(1)
 
-        player_state["coins"] += 50
+        player_state["coins"] += 60
         player_state["xp"] += 35
         player_state = check_level_up(player_state)
 
@@ -251,14 +251,18 @@ def level2(player_state):
         player_state["coins"],
         player_state["xp"],
         player_state["inventory"],
+        player_state
     )
 
     player_state["hp"] = result[0]
     player_state["coins"] = result[1]
     player_state["xp"] = result[2]
+    player_state["inventory"] = result[3]
 
-    action = result[5]
+    action = result[-1]
 
     if action == "leave_campaign":
         player_state["leave_campaign"] = True
         return player_state
+    
+    return player_state

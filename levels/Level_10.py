@@ -88,7 +88,7 @@ def level10(player_state):
     win, new_hp = start_combat(
         player_state["hp"],
         "SWAT Assault Unit",
-        250,
+        180,
         14,
         18,
         player_damage=player_state["damage"]
@@ -112,7 +112,7 @@ def level10(player_state):
     win, new_hp = start_combat(
         player_state["hp"],
         "T-1000 Prototype Form",
-        275,
+        200,
         16,
         20,
         is_boss=True,
@@ -144,7 +144,7 @@ def level10(player_state):
     win, new_hp = start_combat(
         player_state["hp"],
         "T-1000 Final Form",
-        300,
+        250,
         18,
         22,
         is_boss=True,
@@ -163,7 +163,7 @@ def level10(player_state):
         animate_text("T-800: Confirmed termination.")
         pause(1)
 
-        player_state["coins"] += 180
+        player_state["coins"] += 250
         player_state["xp"] += 180
         player_state = check_level_up(player_state)
 
@@ -189,9 +189,12 @@ def level10(player_state):
     player_state["hp"] = result[0]
     player_state["coins"] = result[1]
     player_state["xp"] = result[2]
+    player_state["inventory"] = result[3]
 
-    action = result[5]
+    action = result[-1]
 
     if action == "leave_campaign":
         player_state["leave_campaign"] = True
         return player_state
+    
+    return player_state

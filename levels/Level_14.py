@@ -153,7 +153,7 @@ def level14(player_state):
     win, new_hp = start_combat(
         player_state["hp"],
         "Spider Crawlers",
-        300,
+        200,
         8,
         13,
         player_damage=player_state["damage"]
@@ -184,7 +184,7 @@ def level14(player_state):
     win, new_hp = start_combat(
         player_state["hp"],
         "T-X UNIT",
-        500,
+        300,
         14,
         20,
         is_boss=True,
@@ -225,9 +225,12 @@ def level14(player_state):
     player_state["hp"] = result[0]
     player_state["coins"] = result[1]
     player_state["xp"] = result[2]
+    player_state["inventory"] = result[3]
 
-    action = result[5]
+    action = result[-1]
 
     if action == "leave_campaign":
         player_state["leave_campaign"] = True
         return player_state
+    
+    return player_state

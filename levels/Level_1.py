@@ -208,9 +208,12 @@ def level1(player_state):
     player_state["hp"] = result[0]
     player_state["coins"] = result[1]
     player_state["xp"] = result[2]
+    player_state["inventory"] = result[3]
 
-    action = result[5]
+    action = result[-1]
 
     if action == "leave_campaign":
         player_state["leave_campaign"] = True
         return player_state
+    
+    return player_state

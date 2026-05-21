@@ -118,11 +118,11 @@ def level6_dialogue():
     animate_text("T-800: T-1000.")
     pause(1)
 
-    animate_text(">>> ENCOUNTER: T-800 PATROL UNIT <<<", 0.01)
+    animate_text(">>> ENCOUNTER: T-1000 UNIT <<<", 0.01)
     play_sfx("alert")
     pause(1)
 
-    animate_text("'The patrol unit attacks!'", 0.02)
+    animate_text("'The T-1000 unit attacks!'", 0.02)
     play_sfx("hit")
     pause(2)
 
@@ -139,7 +139,7 @@ def level6(player_state):
     # Combat System
     win, new_hp = start_combat(
         player_state["hp"],
-        "T-800 Patrol Unit",
+        "T-1000 Prototype",
         90,
         10,
         14,
@@ -151,13 +151,13 @@ def level6(player_state):
     # After Combat
     if not win:
 
-        animate_text("The patrol unit overpowers the group.")
+        animate_text("The T-1000 prototype overpowers the group.")
         pause(1)
 
         animate_text("MISSION FAILED")
         return player_state
 
-    animate_text("The patrol unit collapses to the ground.")
+    animate_text("The T-1000 prototype collapses and turns into a puddle of liquid metal.")
     play_sfx("explosion")
     pause(1)
 
@@ -169,7 +169,7 @@ def level6(player_state):
     play_sfx("warning")
     pause(1)
 
-    animate_text("WARNING: Unknown entity detected...")
+    animate_text("T-800: It is not over yet.")
     animate_text("Liquid metal structure forming...")
     pause(1)
 
@@ -196,7 +196,7 @@ def level6(player_state):
     # Combat System (Mini-Boss)
     win, new_hp = start_combat(
         player_state["hp"],
-        "T-1000 Prototype",
+        "T-1000 Reformed",
         110,
         12,
         16,
@@ -241,7 +241,7 @@ def level6(player_state):
         animate_text("SYSTEM: Kyle Reese has exited the active timeline.")
         pause(1)
 
-        player_state["coins"] += 100
+        player_state["coins"] += 110
         player_state["xp"] += 100
         player_state = check_level_up(player_state)
 
@@ -268,9 +268,12 @@ def level6(player_state):
     player_state["hp"] = result[0]
     player_state["coins"] = result[1]
     player_state["xp"] = result[2]
+    player_state["inventory"] = result[3]
 
-    action = result[5]
+    action = result[-1]
 
     if action == "leave_campaign":
         player_state["leave_campaign"] = True
         return player_state
+    
+    return player_state

@@ -183,7 +183,7 @@ def level4(player_state):
         animate_text("Kyle Reese: That's the terrifying part.")
         pause(1)
 
-        player_state["coins"] += 75
+        player_state["coins"] += 85
         player_state["xp"] += 65
         player_state = check_level_up(player_state)
 
@@ -214,9 +214,12 @@ def level4(player_state):
     player_state["hp"] = result[0]
     player_state["coins"] = result[1]
     player_state["xp"] = result[2]
+    player_state["inventory"] = result[3]
 
-    action = result[5]
+    action = result[-1]
 
     if action == "leave_campaign":
         player_state["leave_campaign"] = True
         return player_state
+    
+    return player_state
