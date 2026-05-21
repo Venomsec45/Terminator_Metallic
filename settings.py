@@ -1,77 +1,81 @@
 import json
 from additional_scripts.screen_clear import terminal_screen_clear
 
+SETTINGS_FILE = "settings.json"
+
 # Default settings
 settings = {
     "username": None,
-    "theme": None,
+    "theme": "Default",
     "save_text_results": True,
     "save_player_status": True
 }
 
-# Save settings
+# ---------------- SAVE ----------------
 def save_settings():
-    with open("settings.json", "w") as file:
+    with open(SETTINGS_FILE, "w") as file:
         json.dump(settings, file, indent=4)
 
-# Load settings
+# ---------------- LOAD ----------------
 def load_settings():
     global settings
     try:
-        with open("settings.json", "r") as file:
-            settings = json.load(file)
+        with open(SETTINGS_FILE, "r") as file:
+            settings.update(json.load(file))
     except FileNotFoundError:
         save_settings()
 
-# Settings menu
+# ---------------- MENU ----------------
 def settings_menu():
     while True:
         terminal_screen_clear()
         print("\n" + "-" * 40 + "SETTINGS" + "-" * 40 + "\n")
-        print("1. Username change")
-        print("2. Theme change")
-        print("3. Text save results")
-        print("4. Save player status in JSON")
-        print("5. Back")
 
-        choice = input("> ")
+        print(f"Current Username: {settings['username']}")
+        print(f"Theme: {settings['theme']}")
+        print(f"Save Text Results: {settings['save_text_results']}")
+        print(f"Save Player Status: {settings['save_player_status']}")
 
+        print("\n1. Change Username")
+        print("2. Toggle Text Save Results")
+        print("3. Toggle Player Save Status")
+        print("4. Back")
+
+        choice = input("> ").strip()
+
+        # ---------------- USERNAME ----------------
         if choice == "1":
-            username = input("Enter username (min 5 chars): ")
-            if username != "" and len(username) >= 5:
-                pass # In testing
+            username = input("Enter username (min 5 chars): ").strip()
+
+            if len(username) >= 5:
+                settings["username"] = username
                 print("Username updated!")
             else:
                 print("Invalid username!")
+            input("Press Enter...")
 
+        # THEME IS DEPRECATED 
+
+        # ---------------- TOGGLE TEXT SAVE ----------------
         elif choice == "2":
-            print("""1. Red
-2. Blue
-3. Green""")
-            theme = input("Choose theme: ")
-            if theme == "1":
-                settings["theme"] = "Red"
-            elif theme == "2":
-                settings["theme"] = "Blue"
-            elif theme == "3":
-                settings["theme"] = "Green"
-            else:
-                print("Invalid!")
+            settings["save_text_results"] = not settings["save_text_results"]
+            print(f"Text Save Results: {settings['save_text_results']}")
+            input("Press Enter...")
 
+        # ---------------- TOGGLE PLAYER SAVE ----------------
         elif choice == "3":
-            settings["save_text_results"] = True
-            print("Text Saved")
+            settings["save_player_status"] = not settings["save_player_status"]
+            print(f"Player Save Status: {settings['save_player_status']}")
+            input("Press Enter...")
 
+        # ---------------- EXIT ----------------
         elif choice == "4":
-            settings["save_player_status"] = True
-            print("Player status saved")
-
-        elif choice == "5":
             save_settings()
             break
 
         else:
             print("Invalid choice!")
+            input("Press Enter...")
 
-# auto load pag run
+# auto load on import
 load_settings()
