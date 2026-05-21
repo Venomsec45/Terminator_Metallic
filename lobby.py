@@ -4,7 +4,8 @@ from color import Colors as color
 from campaign import start_campaign
 from solo_match import solo_match
 from shop import show_shop
-from settings import settings_menu
+from settings import settings_menu, settings
+from player_state_utils import reset_player_state
 from player import Player
 import time
 import sys
@@ -88,6 +89,15 @@ def lobby_layout(username):
     Enter your choice: """)
                 
             if choice == "1":
+
+                # ONLY RESET IF DEAD
+                if player_state.get("game_over"):
+                    player_state = reset_player_state(player_state)
+
+                # clear flags for safe reuse
+                player_state["game_over"] = False
+                player_state["leave_campaign"] = False
+
                 player_state = start_campaign(player_state)
 
             elif choice == "2":
