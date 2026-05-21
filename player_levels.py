@@ -8,7 +8,7 @@ def check_level_up(player_state):
         player_state["xp"] -= xp_needed(player_state["level"])
         player_state["level"] += 1
 
-        hp_gain = 10
+        hp_gain = 15
         player_state["max_hp"] += hp_gain
         player_state["hp"] += hp_gain
 
