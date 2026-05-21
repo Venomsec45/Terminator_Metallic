@@ -4,7 +4,6 @@ from color import Colors
 import time
 from additional_scripts.screen_clear import terminal_screen_clear
 
-# Solo Match Function
 def solo_match(player):
 
     enemy = random_enemy()
@@ -16,14 +15,14 @@ def solo_match(player):
         terminal_screen_clear()
 
         print("\n" + "-" * 40 + "STATUS" + "-" * 40 + "\n")
-        print(f"Your HP: {Colors.Custom_green_1}{player.hp}{Colors.End}/{Colors.Custom_green_1}{player.max_hp}{Colors.End}")
+        print(f"Your HP: {Colors.Custom_green_1}{player.hp}{Colors.End}/{player.max_hp}")
         print(f"{enemy.name} HP: {Colors.Custom_green_1}{enemy.hp}{Colors.End}")
         print("\n" + "-" * 86)
 
         print(f"\n1. {Colors.Custom_red}Attack{Colors.End}")
         print(f"2. {Colors.Custom_blue}Use Item{Colors.End}")
 
-        action = input("Choose action: ")
+        action = input("Choose action: ").strip()
 
         if action == "1":
             player.attack(enemy)
@@ -43,11 +42,12 @@ def solo_match(player):
         enemy.attack(player)
         time.sleep(2.5)
 
-    # Results
+    # RESULTS
     print("\n" + "-" * 40 + "RESULT" + "-" * 40 + "\n")
 
     if player.hp <= 0:
         print(f"{Colors.Custom_red}You lost the match!{Colors.End}")
+        player.game_over = True
 
     else:
         print(f"{Colors.Custom_green_1}You won the match!{Colors.End}")
@@ -56,13 +56,4 @@ def solo_match(player):
     print("\n" + "-" * 86)
     time.sleep(2.5)
 
-    # Reset HP
-    player.reset_hp()
-
-    print(f"{Colors.Custom_green_1}HP RESTORED{Colors.End}\n")
-
-
-# Test
-if __name__ == "__main__":
-    player = Player("Player1")
-    solo_match(player)
+    return player
