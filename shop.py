@@ -45,7 +45,7 @@ def show_shop(player_state):
             10: ("Damage Boost (+15 Damage)", 150, "damage", 15),
             11: ("XP Booster (x2 XP)", 200, "xp_boost", 2),
 
-            12: ("Medkit (+40 HP)", 60, "heal", 40),
+            12: ("Medkit (+50 HP)", 60, "heal", 50),
         }
 
         print("\nItems:")
